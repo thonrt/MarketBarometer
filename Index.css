@@ -1,0 +1,171 @@
+﻿
+.content {
+    width:300px;
+    height:250px;
+    font-size:18px;
+   
+ 
+ }
+.top {
+    font-weight:bold;
+    padding-bottom:14px;
+    color:#171717;
+    border-bottom:dotted 1px #656565;
+}
+.middle {
+    padding-top:11px;
+    height:150px;
+}
+.bottom {
+    clear:left;
+    padding-top:8px;
+}
+.Big {
+    float :left;
+    width :50%;
+    height:150px;
+}
+.Small {
+    float:right;
+    width:48%;
+    height:150px;
+       
+}
+.bottom1 {
+    width:300px;
+    height:7px;
+      
+}
+.box1 {
+    width:14.28%;
+    height:6px;
+    float:left;  
+}
+ .box11 {
+    background-color: #bf0d3f;
+}
+.bottom1 .box11 {
+    border-bottom-left-radius:15px;
+    border-top-left-radius:15px;
+}
+ .box12{
+	background-color:#ea5f80;
+}
+ .box13{
+	background-color:#f4afbf;
+}
+
+.box14{
+	background-color:#999999;
+}
+.box15{
+	background-color:#aae3c4;
+}
+.box16{
+	background-color:#56c88a;
+}
+.box17{
+	background-color:#00ac4d;
+  
+}
+.bottom1 .box17 {
+    border-bottom-right-radius:15px;
+    border-top-right-radius:15px;
+}
+
+
+.box2 {
+    font-size:10px;
+    
+}
+ .box21 {
+     width:20%;
+    float:left;
+    
+}
+.box22 {
+    float:left;
+     width:60%;
+    text-align:center;
+}
+.box23 {
+     width:20%;
+    float:right;
+     text-align:right;
+}
+  
+
+
+
+.box{
+	width:45px;
+	height:45px;
+	float:left;
+	margin-right:1px;
+	margin-bottom:1px;
+}
+
+#clear{
+	clear:left;
+}
+.rows {
+   float:left ;
+   font-size:7px;
+}
+.rows1 {
+    width:5px;
+    height:47px;
+    -moz-transform:rotate(0deg);
+	-webkit-transform:rotate(0deg);
+	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+}
+
+.cols {
+    width: 138px;
+    height: 15px;
+    text-align: center;
+    float:left;
+    font-size:7px;
+}
+.cols1 {
+    width:20%;
+    float:left;
+    }
+.cols2{
+   float:left;
+   width:60%;
+   text-align:center;
+   
+    }
+.cols3 {
+    width:20%;
+    float:right;
+    }
+.left1 {
+   float:left;
+   font-size:7px;
+}
+
+
+.small{
+    float:left;
+}
+.boxsmall{
+     float:left;
+    
+    padding-left:19px;
+}
+
+.boxs{
+	width:9px;
+	height:9px;
+	float:left;
+	margin-left:0.5px;
+	margin-top:0.5px;
+}
+.text {
+    clear:left;
+    font-size:10px;
+    padding-bottom:19px;
+    padding-left:19px;
+}

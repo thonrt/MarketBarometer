@@ -1,0 +1,5 @@
+D:\workspaces1\BLL\bin\Debug\BLL.dll
+D:\workspaces1\BLL\bin\Debug\BLL.pdb
+D:\workspaces1\BLL\bin\Debug\Newtonsoft.Json.dll
+D:\workspaces1\BLL\obj\Debug\BLL.dll
+D:\workspaces1\BLL\obj\Debug\BLL.pdb
