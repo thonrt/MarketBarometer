@@ -1,6 +1,11 @@
 ﻿
+
+// get namespaces
 QS_RegisterNameSpaces("QS._morningstar._mb");
-QS._morningstar = {
+
+
+//add properties
+QS._morningstar._mb = {
     status: "OneDay",
     config: {
         OneDay: {
@@ -37,9 +42,13 @@ QS._morningstar = {
 
 };
 
-QS._morningstar._mb.GetConfig = function () {
-    return QS._morningstar.config[type];
+
+// through type gain properties
+QS._morningstar._mb.GetConfig = function (type) {
+    return QS._morningstar._mb.config[type];
     };
+
+
 
 QS._morningstar._mb.GetColor = function (rangeArr, rate) {
     var colorArr = ["#bf0d3f", "#ea5f80", "#f4afbf", "#999", "#aae3c4", "#56c88a", "#00ac4d"];
@@ -114,7 +123,7 @@ QS._morningstar._mb.Update = function () {
     var boxs = document.getElementsByClassName("boxsmall");
     var type = "";
     var callback = function (dataBase) {
-        QS._morningstar._mb.Show(dataBase.root[QS._morningstar.status].split(','), QS._morningstar.status);
+        QS._morningstar._mb.Show(dataBase.root[QS._morningstar._mb.status].split(','), QS._morningstar._mb.status);
         for (var i = 0, len = boxs.length; i < len; i++) {
             var box = boxs[i];
             if (box.attributes["period"]) {
@@ -134,7 +143,7 @@ QS._morningstar._mb.Subscribe = function () {
     var boxs= $("div[class='boxsmall']");
     var type = "";
     var callbackSub = function (dataBase) {
-        QS._morningstar._mb.Show(dataBase.root[QS._morningstar.status].split(','), QS._morningstar.status);
+        QS._morningstar._mb.Show(dataBase.root[QS._morningstar._mb.status].split(','), QS._morningstar._mb.status);
         for (var i = 0, len = boxs.length; i < len; i++) {
             var box = boxs[i];
             type = box.attributes["period"].value;
