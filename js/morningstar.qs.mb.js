@@ -41,7 +41,7 @@
 
 
 
-
+  //get  a color acorrding to rangeArr and rate
     GetColor: function (rangeArr, rate) {
         var colorArr = ["#bf0d3f", "#ea5f80", "#f4afbf", "#999", "#aae3c4", "#56c88a", "#00ac4d"];
         var avg = (rangeArr[1] - rangeArr[0]) / 7;
