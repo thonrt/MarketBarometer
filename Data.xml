@@ -2,8 +2,8 @@
 <root>
   <OneDay>-0.5,1.0,-0.6,-2.5,0.4,-0.12,0.7,-0.9,0.3</OneDay>
   <OneWeek>-0.08,-1.2,0.13,2.3,-0.98,1.1,0.7,0.5,0.3</OneWeek>
-  <OneMouth>2,-4,0.1,-3.1,-2.1,1.1,3.2,-4.5,-2.1</OneMouth>
-  <ThreeMouth>-7,5,1.5,-3.7,6,3.6,-3.4,-1,8</ThreeMouth>
+  <OneMonth>2,-4,0.1,-3.1,-2.1,1.1,3.2,-4.5,-2.1</OneMonth>
+  <ThreeMonth>-7,5,1.5,-3.7,6,3.6,-3.4,-1,8</ThreeMonth>
   <OneYear>-10,2,-17,7,21,-17,5,9,1</OneYear>
   <ThreeYear>-10,3,6,7,0,34,-12,-8,1</ThreeYear>
 </root>

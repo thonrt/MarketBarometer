@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" style="height:auto">
+<head>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <title>Demo</title>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("p").click(function () {
+                $(this).hide();
+            });
+        });
+      
+            $(document).ready(function (e) {
+                $("div").bind('click', function () {
+                    alert("hahah");
+                });
+            $("div").append("duanr rui");
+            });
+    </script>
+    <style type="text/css">
+        #box {
+            background-color: pink;
+            animation-name: horizontal-slide;
+            animation-duration: 5s;
+            animation-iteration-count: 10;
+        }
+
+        @keyframes horizontal-slide {
+            from {
+                left: 0;
+            }
+
+            to {
+                left: 100px;
+            }
+        }
+         .data::after{
+            content: "hahha";
+            color: red;
+            display:inline-block;
+        }
+      
+    </style>
+
+</head>
+
+<body>
+    <p>点击我，我会消失喔</p>
+    <p>哈哈，我没骗你吧</p>
+    <div id="box">
+        hello world
+
+    </div>
+    <div class="data" style="cursor:pointer" >
+        <span>hello world</span>
+        "你好"
+      
+    </div>
+</body>
+</html>
