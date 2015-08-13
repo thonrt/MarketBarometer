@@ -9,6 +9,8 @@ QS._morningstar._mb = {
     status: "OneDay",
     typedef: ["OneDay", "OneWeek", "OneMonth", "ThreeMonth", "OneYear", "ThreeYear"],
     fontvalue: ["1D", "1W", "1M", "3M", "1Y", "3Y"],
+    colorArr: ["#bf0d3f", "#ea5f80", "#f4afbf", "#999", "#aae3c4", "#56c88a", "#00ac4d"],
+    numValue:["1.25","1.25","4","8","20","20"],
     links: ["http://quotes.morningstar.com/indexquote/quote.html?t=$MLVL",
             "http://quotes.morningstar.com/indexquote/quote.html?t=$MLCR",
             "http://quotes.morningstar.com/indexquote/quote.html?t=$MLGR",
@@ -19,18 +21,16 @@ QS._morningstar._mb = {
             "http://quotes.morningstar.com/indexquote/quote.html?t=$MSCR",
             "http://quotes.morningstar.com/indexquote/quote.html?t=$MSGR"
     ],
-    colorArr: ["#bf0d3f", "#ea5f80", "#f4afbf", "#999", "#aae3c4", "#56c88a", "#00ac4d"],
-    numValue:["1.25","1.25","4","8","20","20"],
     attdef: {
         color:[],
         value:[],
         range:[]
     },
-    config:[],
+    config: [],
+    //传入参数type来组装一个json对象
     init: function (type) {
         var proToString = JSON.stringify(QS._morningstar._mb.attdef);
         var properties = "{\"" + type + "\"" + ":" + proToString + "}";
- 
         return JSON.parse(properties);
     },
   
@@ -47,7 +47,6 @@ QS._morningstar._mb.GetConfig = function (type) {
             keyvalue = key;
         }
         if (keyvalue == type) {
-
             return QS._morningstar._mb.config[i][type];
             break;
         }
@@ -55,7 +54,7 @@ QS._morningstar._mb.GetConfig = function (type) {
     };
 
 
-
+//根据获取的rate数据，判断返回的颜色
 QS._morningstar._mb.GetColor = function (rangeArr, rate) {
     var colorArr = QS._morningstar._mb.colorArr;;
     var avg = (rangeArr[1] - rangeArr[0]) / 7;
@@ -72,6 +71,7 @@ QS._morningstar._mb.GetColor = function (rangeArr, rate) {
 }
 
 
+//通过ajax技术，获取data.xml文件中的数据
 QS._morningstar._mb.GetData = function (callback) {
     var url = "http://localhost/MarketBarometer/MarketBarometer.ashx";
     $.ajax({
@@ -89,6 +89,7 @@ QS._morningstar._mb.GetData = function (callback) {
     });
 }
 
+//根据返回的后台数据periodReturn，获取一个九宫格的颜色，并push到colco属性中
 QS._morningstar._mb.ColorReturn = function (periodReturn, config) {
     config.color = [];
     for (var i = 0, len = periodReturn.length; i < len; i++) {
@@ -99,6 +100,8 @@ QS._morningstar._mb.ColorReturn = function (periodReturn, config) {
     return config.color;
 }
 
+
+//调用ColorReturn（）方法，获取每个格子对应的颜色，再通过Jquery动态的改变每个格子的背景颜色
 QS._morningstar._mb.Show = function (periodReturn, type) {
     var config = QS._morningstar._mb.GetConfig(type);
     var colorValue = QS._morningstar._mb.ColorReturn(periodReturn, config);
@@ -107,11 +110,12 @@ QS._morningstar._mb.Show = function (periodReturn, type) {
         $(divArr[i]).css("backgroundColor", colorValue[i]);
     }
     for (var j = 0; j < config.value.length; j++) {
-        $("#value" + j).innerHTML = config.value[j];
+        $("#value" + j).html(config.value[j]);
 
     }
 }
 
+//调用ColorReturn（）方法，获取每个格子对应的颜色，再通过Jquery动态的改变每个格子的背景颜色
 QS._morningstar._mb.ShowSmall = function (periodReturn, type) {
     var config = QS._morningstar._mb.GetConfig(type);
     if (config) {
@@ -128,6 +132,7 @@ QS._morningstar._mb.ShowSmall = function (periodReturn, type) {
     }
 }
 
+//实现定时刷新功能
 QS._morningstar._mb.Update = function () {
     var boxs = document.getElementsByClassName("boxsmall");
     var type = "";
@@ -146,7 +151,7 @@ QS._morningstar._mb.Update = function () {
 }
 
 
-
+//实现订阅功能，页面一加载，就开始运行，调用show(),showSmall()函数，来显示格子
 QS._morningstar._mb.Subscribe = function () {
   
     var me = this;
@@ -193,7 +198,7 @@ QS._morningstar._mb.createSmallOne = function (len,type,attr1,attr2) {
 
 
 //创建一个2*3的表格，用来存放小九宫格
-QS._morningstar._mb.createBig = function (rows, cols) {
+QS._morningstar._mb.createRight = function (rows, cols) {
     var txt = "<table class='smallone'>";
     for (var i = 0; i < rows; i++) {
         txt = txt + "<tr class='tr1' >";
@@ -201,14 +206,11 @@ QS._morningstar._mb.createBig = function (rows, cols) {
             var type = QS._morningstar._mb.typedef[cols * i + j];
             var jsObj = QS._morningstar._mb.init(type);
              QS._morningstar._mb.config.push(jsObj);
-            var rang = QS._morningstar._mb.numValue[cols * i + j];
-            var rangt = "{\"-" + rang + "\",\"" + rang + "\"}";
-            var valuet = "&lt;-"+rang+"%\",\"&gt;+"+rang+"%";
+             var rang = QS._morningstar._mb.numValue[cols * i + j];
             jsObj[type].range.push(-rang);
-            jsObj[type].range.push(rang);
-            //console.log(range);
-            jsObj[type].value.push(valuet);
-            //console.log(valuet);
+            jsObj[type].range.push(+rang);
+            jsObj[type].value.push("&lt;-" + rang+"%");
+            jsObj[type].value.push("+" + rang + "%&gt;");
         txt = txt + "<td class='td1'>" + QS._morningstar._mb.createSmallOne(3,type , "boxsmall","boxs") + "<span>" + QS._morningstar._mb.fontvalue[3 * i + j] + "</span></td>";
     }
     }
@@ -217,7 +219,7 @@ QS._morningstar._mb.createBig = function (rows, cols) {
 }
 
 //创建一个大的九宫格
-QS._morningstar._mb.createBigOne = function () {
+QS._morningstar._mb.createLeft = function () {
     var txt = QS._morningstar._mb.createSmallOne(3, QS._morningstar._mb.status, "left1", "box");
     $(".Big").html(txt);
     var tdlen = $("table[class='left1'] td[class='box']");
@@ -229,12 +231,13 @@ QS._morningstar._mb.createBigOne = function () {
     }
 }
 
+
 window.onload = function () {
-    QS._morningstar._mb.createBigOne();
-    QS._morningstar._mb.createBig(2, 3);
+    QS._morningstar._mb.createLeft();
+    QS._morningstar._mb.createRight(2, 3);
     QS._morningstar._mb.Subscribe();
 
-    QS._morningstar._mb.Update();
+    //QS._morningstar._mb.Update();
     //setInterval(QS._morningstar._mb.Update, 1000);
 }
 
