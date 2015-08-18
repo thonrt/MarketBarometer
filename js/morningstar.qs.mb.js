@@ -111,7 +111,6 @@ QS._morningstar._mb.Show = function (periodReturn, type) {
     }
     for (var j = 0; j < config.value.length; j++) {
         $("#value" + j).html(config.value[j]);
-
     }
 }
 
@@ -162,14 +161,12 @@ QS._morningstar._mb.Subscribe = function () {
         for (var i = 0, len = boxs.length; i < len; i++) {
             var box = boxs[i];
             type = box.attributes["period"].value;
-           
-         
             var periodReturn = dataBase.root[type].split(',');
             QS._morningstar._mb.ShowSmall(periodReturn, type);
             if (box.attributes["period"]) {
                 box.addEventListener("mouseover", function (periodReturn,type) {
                     return function () {
-                        //QS._morningstar._mb.status = type;
+                        QS._morningstar._mb.status = type;
                         //console.log(type);
                         QS._morningstar._mb.Show(periodReturn, type);
                     }
@@ -179,7 +176,6 @@ QS._morningstar._mb.Subscribe = function () {
     };
     QS._morningstar._mb.GetData(callbackSub);
 }
-
 
 
 //jquery动态生成一个九宫格
