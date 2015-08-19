@@ -233,8 +233,8 @@ window.onload = function () {
     QS._morningstar._mb.createRight(2, 3);
     QS._morningstar._mb.Subscribe();
 
-    //QS._morningstar._mb.Update();
-    //setInterval(QS._morningstar._mb.Update, 1000);
+    QS._morningstar._mb.Update();
+    setInterval(QS._morningstar._mb.Update, 1000);
 }
 
 
